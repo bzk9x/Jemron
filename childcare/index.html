@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Primary Education - Jemron Limited</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-color: #4169E1;  /* Warm coral */
+            --secondary-color: #1e3799; /* Turquoise */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 1rem 1.2rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        .hero-section {
+            background: linear-gradient(125deg, rgba(65, 105, 225, 0.95), rgba(30, 55, 153, 0.90)),
+                        url('https://images.unsplash.com/photo-1503676382389-4809596d5290?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add geometric shapes in background */
+        
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-55%) rotate(5deg); }
+        }
+
+        /* Update your existing hero content */
+        .hero-section .display-4 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Add stats cards */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        /* Right side graphic */
+        .hero-graphic {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            background: url('/api/placeholder/500/500') center/contain no-repeat;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-graphic {
+                display: none;
+            }
+        }
+
+        .service-card {
+            border: none;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card .card-title {
+            color: var(--primary-color);
+        }
+
+        .why-choose-us {
+            background-color: #f8f9fa;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .copyright {
+            background-color: #111;
+            color: #999;
+            padding: 1rem 0;
+        }
+
+        .breadcrumb {
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .breadcrumb-item a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: white;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            color: white;
+        }
+
+        .service-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-card .card-body {
+            padding: 2rem;
+        }
+
+        .testimonials {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--primary-color) !important;
+        }
+
+        /* Animation classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Add this CSS to your stylesheet */
+        .phone-link {
+            text-decoration: none; /* Remove underline from link */
+            color: inherit; /* Inherit text color */
+        }
+
+        .phone-text {
+            display: inline; /* Always show the text */
+        }
+
+        /* Mobile Navigation Optimizations */
+        @media (max-width: 768px) {
+            .navbar-brand h4 {
+                font-size: 1.2rem;
+            }
+
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .navbar-nav .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-menu {
+                border: none;
+                background: #f8f9fa;
+                padding: 0;
+            }
+
+            .dropdown-item {
+                padding: 0.5rem 1.5rem;
+            }
+        }
+
+        /* Top Bar Mobile Optimizations */
+        @media (max-width: 768px) {
+            .top-bar {
+                font-size: 0.8rem;
+                padding: 0.7rem 0;
+            }
+
+            .top-bar .col-md-6 {
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .top-bar .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .top-bar .social-icons {
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            .phone-text {
+                display: none;
+            }
+
+            .address-mobile {
+                font-size: 0.8rem;
+                display: block;
+            }
+        }
+
+        /* Hero Section Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 0;
+                text-align: center;
+            }
+
+            .hero-section .display-4 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .breadcrumb {
+                justify-content: center;
+            }
+        }
+
+        /* Footer Mobile Optimizations */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 0 1rem;
+                text-align: center;
+            }
+
+            .footer h4, .footer h5 {
+                margin-top: 1.5rem;
+            }
+
+            .footer .social-icons {
+                margin-top: 1rem;
+                justify-content: center;
+                display: flex;
+                gap: 1rem;
+            }
+
+            .footer .btn-outline-light {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .copyright {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <a href="tel:+4478265185559" class="phone-link" title="Call us">
+                            <i class="fas fa-phone-alt me-2"></i> 
+                            <span class="phone-text">Call us: </span>+4478265185559
+                        </a>
+                        <div class="address-mobile">
+                            <i class="fas fa-map-marker-alt me-2"></i> 415 High Street, Stratford, E15 4QZ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-end social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h4 class="mb-0">Jemron Limited</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">About us</a></li>
+                            <li><a class="dropdown-item" href="#">Testimonial</a></li>
+                            <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recruitment
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="display-4">Childcare</h1>
+                    <p class="lead mb-4">Nurturing young minds through play-based learning and creative exploration.</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Services</a></li>
+                            <li class="breadcrumb-item active">Childcare</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fostering Growth Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Fostering Growth and Shaping Bright Futures</h2>
+            <p class="text-center lead mb-4" data-aos="fade-up" data-aos-delay="100">At Jemron, we are dedicated to delivering exceptional childcare services focused on the safety, growth, and happiness of every child. As an Ofsted-registered provider, we uphold and surpass the highest standards of care, giving parents confidence while their children flourish in a supportive and nurturing setting.</p>
+        </div>
+    </section>
+
+    <!-- Services Section with Images -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGNoaWxkY2FyZXxlbnwwfHx8fDE2MjY0MjY0Mjg&ixlib=rb-1.2.1&q=80&w=400" class="card-img-top" alt="Childcare Services Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Childcare Services</h5>
+                            <p class="card-text">We understand how important it is to find trustworthy and loving care for your child. Our qualified team of caregivers is dedicated to offering a warm, secure, and stimulating environment where children can grow, learn, and play. From infants to toddlers, we provide age-appropriate activities that foster emotional, social, and intellectual development.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1605627079912-97c3810a11a4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHByZSUyMHByaW1hcnklMjBlZHVjYXRpb258ZW58MHx8MHx8fDI%3D" class="card-img-top" alt="Nanny and Teacher Recruitment Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Nanny and Teacher Recruitment</h5>
+                            <p class="card-text">At Jemron, we specialize in recruiting experienced nannies and qualified teachers to work with children of all ages. Whether you're looking for in-home childcare support or educators for early years or primary settings, we match families and institutions with professionals who are passionate about fostering young minds. Our rigorous selection process ensures that only the best candidates, with a deep commitment to childcare and education, join our team.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1453749024858-4bca89bd9edc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHByZSUyMHByaW1hcnklMjBlZHVjYXRpb258ZW58MHx8MHx8fDI%3D" class="card-img-top" alt="Mentoring and Coaching Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Mentoring and Coaching for Young Adults</h5>
+                            <p class="card-text">As part of our holistic approach to care and development, we offer mentoring and coaching services tailored to young adults. Our experienced mentors provide guidance on navigating academic, professional, and personal challenges, helping young adults develop the confidence and skills they need to succeed in life. Whether it's career advice, personal development coaching, or support during the transition to adulthood, our mentors are here to empower the next generation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Jemron?</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-check-circle mb-3 text-primary fa-2x"></i>
+                        <h5>Ofsted Registered</h5>
+                        <p>We meet the highest regulatory standards to ensure your child's safety and well-being.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-users mb-3 text-primary fa-2x"></i>
+                        <h5>Experienced Team</h5>
+                        <p>Our dedicated team of skilled nannies, teachers, and mentors is passionate about supporting children and young adults.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-cogs mb-3 text-primary fa-2x"></i>
+                        <h5>Customized Services</h5>
+                        <p>Whether you need childcare, recruitment assistance, or mentoring, we provide personalized solutions tailored to your needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-graduation-cap mb-3 text-primary fa-2x"></i>
+                        <h5>Comprehensive Growth</h5>
+                        <p>We prioritize not just care but the overall development of each individual, ensuring they are ready for the future.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">What Our Clients Say</h2>
+            <div class="swiper testimonialSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Parent" class="testimonial-image">
+                            <h5>Emily Thompson</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"The teachers are amazing and my child loves coming to school every day. We've seen tremendous growth in their confidence and learning."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1568923066121-fb6216cf26f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWR1bHR8ZW58MHx8MHx8fDI%3D" alt="Parent" class="testimonial-image">
+                            <h5>Nara Lee</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"My child has flourished in this environment. The staff is dedicated and truly cares about the children's development."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Parent" class="testimonial-image">
+                            <h5>Sarah Johnson</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"The curriculum is engaging and fun! My child looks forward to school every day and has made wonderful friends."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Get in Touch Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Get in Touch</h2>
+            <img src="https://images.unsplash.com/photo-1501234567890-abcdef123456?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" class="img-fluid mb-4" alt="Get in Touch">
+            <p class="text-center lead mb-4">We'd love to hear from you! Whether you're a parent seeking childcare services, a professional interested in joining our team, or a young adult looking for guidance, Jemron is here to help. Get in touch today to discover more about our services and how we can collaborate to create a brighter future.</p>
+            <div class="text-center">
+                <a href="https://wa.me/+447826518559" class="btn btn-primary">Contact Us on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+447826518559" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h4 class="mb-4">Jemron Limited</h4>
+                    <p>At Jemron, we are dedicated to delivering high-quality services that not only meet but exceed the highest standards.</p>
+                    <a href="#" class="btn btn-outline-light">About Us</a>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>415 High Street, Stratford, E15 4QZ</p>
+                    <p><i class="fas fa-phone me-2"></i> +4478265185559</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container text-center">
+            <small>&copy; 2025 Jemron Limited. All rights reserved.</small>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Swiper
+        new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .slide-in').forEach(el => observer.observe(el));
+
+        // Add smooth scrolling to mobile menu items
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
+
+        // Handle mobile navigation dropdown
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    menu.classList.toggle('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
