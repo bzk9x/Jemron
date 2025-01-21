@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare - Jemron Limited</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-color: #4169E1;  /* Warm coral */
+            --secondary-color: #1e3799; /* Turquoise */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 1rem 1.2rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
+        .hero-section {
+            background: linear-gradient(125deg, rgba(65, 105, 225, 0.95), rgba(30, 55, 153, 0.90)),
+                        url('https://images.unsplash.com/photo-1579684453377-48ec05c6b30a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGhlYWx0aGNhcmV8ZW58MHx8MHx8fDI%3D') center/cover;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add geometric shapes in background */
+        
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-55%) rotate(5deg); }
+        }
+
+        /* Update your existing hero content */
+        .hero-section .display-4 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Add stats cards */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        /* Right side graphic */
+        .hero-graphic {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            background: url('/api/placeholder/500/500') center/contain no-repeat;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-graphic {
+                display: none;
+            }
+        }
+
+        .service-card {
+            border: none;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card .card-title {
+            color: var(--primary-color);
+        }
+
+        .why-choose-us {
+            background-color: #f8f9fa;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .copyright {
+            background-color: #111;
+            color: #999;
+            padding: 1rem 0;
+        }
+
+        .breadcrumb {
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        .breadcrumb-item a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: white;
+        }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            color: white;
+        }
+
+        .service-card .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-card .card-body {
+            padding: 2rem;
+        }
+
+        .testimonials {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--primary-color) !important;
+        }
+
+        /* Animation classes */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Add this CSS to your stylesheet */
+        .phone-link {
+            text-decoration: none; /* Remove underline from link */
+            color: inherit; /* Inherit text color */
+        }
+
+        .phone-text {
+            display: inline; /* Always show the text */
+        }
+
+        /* Mobile Navigation Optimizations */
+        @media (max-width: 768px) {
+            .navbar-brand h4 {
+                font-size: 1.2rem;
+            }
+
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .navbar-nav .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-menu {
+                border: none;
+                background: #f8f9fa;
+                padding: 0;
+            }
+
+            .dropdown-item {
+                padding: 0.5rem 1.5rem;
+            }
+        }
+
+        /* Top Bar Mobile Optimizations */
+        @media (max-width: 768px) {
+            .top-bar {
+                font-size: 0.8rem;
+                padding: 0.7rem 0;
+            }
+
+            .top-bar .col-md-6 {
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .top-bar .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .top-bar .social-icons {
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+
+            .phone-text {
+                display: none;
+            }
+
+            .address-mobile {
+                font-size: 0.8rem;
+                display: block;
+            }
+        }
+
+        /* Hero Section Mobile Optimizations */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 0;
+                text-align: center;
+            }
+
+            .hero-section .display-4 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .breadcrumb {
+                justify-content: center;
+            }
+        }
+
+        /* Footer Mobile Optimizations */
+        @media (max-width: 768px) {
+            .footer {
+                padding: 2rem 0 1rem;
+                text-align: center;
+            }
+
+            .footer h4, .footer h5 {
+                margin-top: 1.5rem;
+            }
+
+            .footer .social-icons {
+                margin-top: 1rem;
+                justify-content: center;
+                display: flex;
+                gap: 1rem;
+            }
+
+            .footer .btn-outline-light {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .copyright {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <a href="tel:+4478265185559" class="phone-link" title="Call us">
+                            <i class="fas fa-phone-alt me-2"></i> 
+                            <span class="phone-text">Call us: </span>+4478265185559
+                        </a>
+                        <div class="address-mobile">
+                            <i class="fas fa-map-marker-alt me-2"></i> 415 High Street, Stratford, E15 4QZ
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-end social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h4 class="mb-0">Jemron Limited</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">About us</a></li>
+                            <li><a class="dropdown-item" href="#">Testimonial</a></li>
+                            <li><a class="dropdown-item" href="#">Contact us</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recruitment
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="display-4">Healthcare</h1>
+                    <p class="lead mb-4">Your health, our priority. Comprehensive care that empowers your well-being</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Services</a></li>
+                            <li class="breadcrumb-item active">Healthcare</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fostering Growth Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Compassionate Healthcare Support at Every Life Stage</h2>
+            <p class="text-center lead mb-4" data-aos="fade-up" data-aos-delay="100">At Jemron, we are committed to offering professional, compassionate, and holistic healthcare support services for adults and young adults. We focus on providing care that fosters well-being, dignity, and independence, particularly for those dealing with mental health challenges or living with dementia. Through our person-centered approach, we design customized care solutions to address the unique needs of each individual.</p>
+        </div>
+    </section>
+
+    <!-- Services Section with Images -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aGVhbHRoY2FyZXxlbnwwfHwwfHx8Mg%3D%3D" class="card-img-top" alt="Healthcare Services Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Adult and Young Adult Care</h5>
+                            <p class="card-text">We provide specialized care services to support both adults and young adults, helping them lead fulfilling and independent lives. Our skilled caregivers and support staff deliver high-quality care, whether at home or in a residential setting, with respect, empathy, and professionalism. Our focus is on improving the overall quality of life by addressing physical, emotional, and social needs, including personal care assistance, medication management, mobility and transportation support, daily living tasks such as meal preparation and housekeeping, and offering social and recreational activities to enhance well-being.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhlYWx0aGNhcmV8ZW58MHx8MHx8fDI%3D" class="card-img-top" alt="Mental Health Support Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Mental Health Support</h5>
+                            <p class="card-text">At Jemron, we recognize that mental health challenges can impact all aspects of life. Our team of qualified professionals provides personalized mental health support services for adults and young adults, assisting them in managing conditions like anxiety, depression, and other emotional or psychological struggles. Our aim is to offer compassionate care that promotes mental well-being, encourages recovery, and supports long-term wellness through emotional support, mental health assessments and care planning, as well as help in managing stress, anxiety, and depression. We also offer crisis intervention and ongoing care to ensure continued support.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card service-card h-100">
+                        <img src="https://images.unsplash.com/photo-1550791871-0bcd47c97881?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGhlYWx0aGNhcmV8ZW58MHx8MHx8fDI%3D" class="card-img-top" alt="Dementia Care and Support Image">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Dementia Care and Support</h5>
+                            <p class="card-text">Caring for individuals with dementia requires specialized knowledge and compassion. At Passionate Corridor, we are dedicated to providing high-quality dementia care that prioritizes enhancing quality of life while upholding the dignity and respect of each individual. Our trained caregivers are experienced in supporting people at all stages of dementia, ensuring comfort, safety, and well-being. We offer cognitive stimulation activities, memory care programs, assistance with daily living tasks, and create safe, comfortable living environments. Additionally, we provide family support and guidance throughout the care journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Jemron?</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-user-md mb-3 text-primary fa-2x"></i>
+                        <h5>Person-Centered Care</h5>
+                        <p>We customize our services to address the unique needs and preferences of each individual, ensuring personalized and respectful care.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-users mb-3 text-primary fa-2x"></i>
+                        <h5>Experienced Staff</h5>
+                        <p>Our team is made up of qualified, compassionate professionals who are committed to enhancing the lives of those in our care.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-heart mb-3 text-primary fa-2x"></i>
+                        <h5>Holistic Approach</h5>
+                        <p>We focus on the physical, emotional, and mental well-being of every individual, offering comprehensive care that supports overall health.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center p-4">
+                        <i class="fas fa-stethoscope mb-3 text-primary fa-2x"></i>
+                        <h5>Specialized Care</h5>
+                        <p>Whether it's mental health support or dementia care, we provide specialized services with empathy and expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">What Our Clients Say</h2>
+            <div class="swiper testimonialSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Parent" class="testimonial-image">
+                            <h5>Emily Thompson</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"The teachers are amazing and my child loves coming to school every day. We've seen tremendous growth in their confidence and learning."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1568923066121-fb6216cf26f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWR1bHR8ZW58MHx8MHx8fDI%3D" alt="Parent" class="testimonial-image">
+                            <h5>Nara Lee</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"My child has flourished in this environment. The staff is dedicated and truly cares about the children's development."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card text-center">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Parent" class="testimonial-image">
+                            <h5>Sarah Johnson</h5>
+                            <p class="text-muted">Parent</p>
+                            <p>"The curriculum is engaging and fun! My child looks forward to school every day and has made wonderful friends."</p>
+                            <div class="text-warning mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Get in Touch Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Get in Touch</h2>
+            <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fGhlYWx0aGNhcmV8ZW58MHx8MHx8fDI%3D" class="img-fluid mb-4" alt="Get in Touch">
+            <p class="text-center lead mb-4">We'd love to hear from you! Whether you're a parent seeking childcare services, a professional interested in joining our team, or a young adult looking for guidance, Passionate Corridor is here to help. Get in touch today to discover more about our services and how we can collaborate to create a brighter future.</p>
+            <div class="text-center">
+                <a href="https://wa.me/+447826518559" class="btn btn-primary">Contact Us on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+447826518559" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h4 class="mb-4">Jemron Limited</h4>
+                    <p>At Jemron, we are dedicated to delivering high-quality services that not only meet but exceed the highest standards.</p>
+                    <a href="#" class="btn btn-outline-light">About Us</a>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>415 High Street, Stratford, E15 4QZ</p>
+                    <p><i class="fas fa-phone me-2"></i> +4478265185559</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container text-center">
+            <small>&copy; 2025 Jemron Limited. All rights reserved.</small>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Initialize Swiper
+        new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .slide-in').forEach(el => observer.observe(el));
+
+        // Add smooth scrolling to mobile menu items
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
+
+        // Handle mobile navigation dropdown
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    const menu = dropdown.querySelector('.dropdown-menu');
+                    menu.classList.toggle('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
